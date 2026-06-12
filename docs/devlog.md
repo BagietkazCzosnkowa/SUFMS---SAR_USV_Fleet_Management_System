@@ -6,5 +6,5 @@
 # 13.06.2026:
 ## Todo list:
 - Add history of position, and visualisation of movement
-- Add temperature machanic
+- Add temperature mechanics
 - Add destination for castaways which can swimm.
