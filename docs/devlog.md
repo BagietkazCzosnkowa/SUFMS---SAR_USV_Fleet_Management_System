@@ -8,3 +8,5 @@
 - Add history of position, and visualisation of movement
 - Add temperature mechanics
 - Add destination for castaways which can swimm.
+##
+I was makeing history with animation of movement in mind, but i ran into conclusion, that i would make full history, and then make animation of movement.
