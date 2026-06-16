@@ -10,3 +10,4 @@
 - Add destination for castaways which can swimm.
 ##
 I was makeing history with animation of movement in mind, but i ran into conclusion, that i would make full history, and then make animation of movement.
+Sa, makeing full(for now) simulation history took too long, due to me, who had to lear too much of how python works, so, I have to shift the rest of tasks for another day.
