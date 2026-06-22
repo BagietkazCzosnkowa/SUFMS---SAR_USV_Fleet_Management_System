@@ -12,17 +12,17 @@ class CastawayState(Enum):
 
 @dataclass()
 class CastawaysHistory:
-    history: dict[int, list[CastawaySnapchot]] = field(default_factory=dict)
+    history: dict[int, list[CastawaySnapshot]] = field(default_factory=dict)
 
-    def update_castaway(self, current_id: int, castaway_snapshot: CastawaySnapchot):
-        if current_id not in self.history:
-            self.history[current_id] = []
+    def update_castaway(self, current_frame: int, castaway_snapshot: CastawaySnapshot):
+        if current_frame not in self.history:
+            self.history[current_frame] = []
 
-        self.history[current_id].append(castaway_snapshot)
+        self.history[current_frame].append(castaway_snapshot)
 
 
 @dataclass()
-class CastawaySnapchot:
+class CastawaySnapshot:
     castaway_id: int
     name: str
     position_x: float
@@ -61,7 +61,7 @@ class Castaway:
 
 random.seed()
 castaway_dict: dict[int, Castaway] = {}
-number = 10
+number = 1
 for i in range(int(input('Ilu rozbitków: '))):
     castaway_dict[i] = Castaway(castaway_id=i,
                                 name='Jan',
@@ -72,11 +72,11 @@ for i in range(int(input('Ilu rozbitków: '))):
                                 have_life_jacket=random.choice([True, False]),
                                 can_swim=random.choice([True, False]),
                                 state=random.choice(list(CastawayState)))
-CastawaysHistory = CastawaysHistory()
-for i in range(number):
+castaways_history = CastawaysHistory()
+for frame in range(number):
     for castaway_id in castaway_dict:
         current_castaway = castaway_dict[castaway_id]
-        snapshot = CastawaySnapchot(castaway_id=current_castaway.castaway_id,
+        snapshot = CastawaySnapshot(castaway_id=current_castaway.castaway_id,
                                     name=current_castaway.name,
                                     position_x=current_castaway.position_x,
                                     position_y=current_castaway.position_y,
@@ -84,8 +84,10 @@ for i in range(number):
                                     movement_y=current_castaway.movement_y,
                                     have_life_jacket=current_castaway.have_life_jacket,
                                     can_swim=current_castaway.can_swim,
-                                    state=current_castaway.state)
-        CastawaysHistory.update_castaway(castaway_id, snapshot)
+                                    state=current_castaway.state,
+                                    temperature=current_castaway.temperature,
+                                    time_in_water=current_castaway.time_in_water)
+        castaways_history.update_castaway(frame, snapshot)
         castaway_dict[castaway_id].move()
 
-print(CastawaysHistory.history)
+print(castaways_history.history)
